@@ -47,9 +47,10 @@ class App extends React.Component {
             atEnter={{ opacity: 0, offset: -200 }}
             atLeave={{ opacity: 0, offset: -200 }}
             atActive={{ opacity: 1, offset: 0 }}
-            mapStyles={(styles) => ({
+            mapStyles={(styles) => {
+              return ({
               transform: `translateY(${styles.offset}px)`,
-            })}
+            })}}
           >
             <Route exact path='/' component={Home} />
             <Route exact path='/trips' component={Trips} />
