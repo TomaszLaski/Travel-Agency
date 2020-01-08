@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './OrderOption.scss';
 
 const OrderOptionNumber =  props => (
-  <div className={styles.number}>
+  <div className={styles.number}>{console.log(props)}
     <input className={styles.inputSmall} type='number'
       value={props.currentValue} min={props.limits.min} max={props.limits.max}
-      onChange={() => props.setOptionValue(props.currentTarget.value.id)} />
+      onChange={(event) => props.setOptionValue(event.target.value)} /> 
   </div>
 );
 
