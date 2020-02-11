@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import OrderOption from '../OrderOption/OrderOption.js';
 import Pricing from '../../../data/pricing.json';
 
-console.log(Pricing);
-
 const OrderForm =  (props) => (
   // 18.3 wyświetlanie pojedynczej opcji:
   <Row>
