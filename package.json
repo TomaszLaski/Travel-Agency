@@ -9,7 +9,7 @@
     "prebuild": "npm run clean",
     "build": "webpack --mode production",
     "lint": "eslint src/",
-    "test": "jest",
+    "test": "jest --watch",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors"
   },
