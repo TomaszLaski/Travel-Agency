@@ -1,37 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './OrderOption.scss';
-import OrderOptionDropdown from './OrderOptionDropdown.js';
-import OrderOptionIcons from './OrderOptionIcons.js';
-import OrderOptionCheckboxes from './OrderOptionCheckboxes.js';
-import OrderOptionNumber from './OrderOptionNumber.js';
-import OrderOptionDate from './OrderOptionDate.js';
-import OrderOptionText from './OrderOptionText.js';
+import OrderOptionCheckboxes from './OrderOptionCheckboxes';
+import OrderOptionDropdown from './OrderOptionDropdown';
+import OrderOptionIcons from './OrderOptionIcons';
+import OrderOptionNumber from './OrderOptionNumber';
+import OrderOptionText from './OrderOptionText';
+import OrderOptionDate from './OrderOptionDate';
 
 const optionTypes = {
   dropdown: OrderOptionDropdown,
   icons: OrderOptionIcons,
   checkboxes: OrderOptionCheckboxes,
   number: OrderOptionNumber,
-  date: OrderOptionDate,
   text: OrderOptionText,
+  date: OrderOptionDate,
 };
 
-const OrderOption = ({ id, type, name, setOrderOption, ...otherProps }) => {
+const OrderOptions = ({name, type, id, setOrderOption , ...otherProps}) => {
+
   const OptionComponent = optionTypes[type];
-  if (!OptionComponent) {
+  if(!OptionComponent){
     return null;
   } else {
     return (
       <div className={styles.component}>
         <h3 className={styles.title}>{name}</h3>
         <OptionComponent
-          name={name}
-          setOptionValue={value => setOrderOption({ [id]: value })}
-          {...otherProps}
+          {...otherProps} setOptionValue={value => setOrderOption({[id]: value})}
         />
       </div>
     );
   }
 };
 
-export default OrderOption;
+OrderOptions.propTypes = {
+  name: PropTypes.string,
+  id: PropTypes.string,
+  setOrderOption: PropTypes.func,
+};
+
+export default OrderOptions;
+

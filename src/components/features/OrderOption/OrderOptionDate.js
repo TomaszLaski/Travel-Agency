@@ -1,38 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker-cssmodules.min.css';
 
-class OrderOptionDate extends React.Component {
-  static propTypes = {
-    setOptionValue: PropTypes.any,
+import OptionRequired from './OptionRequired';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import styles from './OrderOption.scss';
+
+const OrderOptionDate = ({setOptionValue, currentValue}) => {    
+    
+  const handleChange = (date) => {
+    console.log(date);
+    setOptionValue(`${date.toLocaleDateString()}`);
   };
+        
+  return (
+    <div className={styles.date}>  
 
-  state = {
-    startDate: new Date(),
-  };
-
-  handleChange = date => {
-    const { setOptionValue } = this.props;
-
-    this.setState(
-      {
-        startDate: date,
-      },
-      () => {
-        setOptionValue(date);
-      },
-    );
-  };
-
-  render() {
-    return (
-      <DatePicker
-        selected={this.state.startDate}
-        onChange={this.handleChange}
+      {!currentValue && <OptionRequired text="*required"/>} 
+      <DatePicker          
+        placeholderText="Click to select a date"
+        dateFormat="yyyy/MM/dd"    
+        onChange={date => handleChange(date)}
+        value={currentValue}
       />
-    );
-  }
-}
+      {/* <input type="date" onChange={} value={currentValue}/> */}
+    </div>
+  );};
+
+OrderOptionDate.propTypes = {  
+  setOptionValue: PropTypes.func,
+  currentValue: PropTypes.string,
+};
 
 export default OrderOptionDate;
+

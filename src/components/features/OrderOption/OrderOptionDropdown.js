@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import styles from './OrderOption.scss';
-import {formatPrice} from '../../../utils/formatPrice.js';
+
+import {formatPrice} from '../../../utils/formatPrice';
 
 const OrderOptionDropdown = ({values, required, currentValue, setOptionValue}) => (
   <select
     className={styles.dropdown}
     value={currentValue}
-    onChange={event => setOptionValue(event.target.value)}
+    onChange={event => setOptionValue(event.currentTarget.value)}
   >
-    {console.log(event)}
     {required ? '' : (
       <option key='null' value=''>---</option>
     )}
@@ -19,10 +20,12 @@ const OrderOptionDropdown = ({values, required, currentValue, setOptionValue}) =
   </select>
 );
 
-OrderOptionDropdown.propTypes = {
+OrderOptionDropdown.propTypes = {  
   values: PropTypes.array,
-  required: PropTypes.string,
+  required: PropTypes.bool,
   currentValue: PropTypes.string,
   setOptionValue: PropTypes.func,
 };
+
 export default OrderOptionDropdown;
+
